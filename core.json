@@ -44,7 +44,7 @@
             "id": "http://naplan.edu.au/ClassCode",
             "type": "string",
             "title": "ClassCode schema.",
-            "maxLength": 10,
+            "maxLength": 40,
             "description": "Description",
             "name": "ClassCode"
         },
@@ -114,14 +114,6 @@
             "description": "Description",
             "enum":["Y","N","U","X"],
             "name": "HomeSchooledStudent"
-        },
-        "Homegroup": {
-            "id": "http://naplan.edu.au/Homegroup",
-            "type": "string",
-            "title": "Homegroup schema.",
-            "maxLength": 10,
-            "description": "Description",
-            "name": "Homegroup"
         },
         "IndigenousStatus": {
             "id": "http://naplan.edu.au/IndigenousStatus",
@@ -484,7 +476,7 @@
             "name": "YearLevel"
         }
     },
-    "required": ["LocalId","FamilyName","GivenName","BirthDate","Sex","CountryOfBirth","FFPOS","IndigenousStatus","StudentLOTE","YearLevel","TestLevel","ASLSchoolId","Parent1SchoolEducation","Parent1NonSchoolEducation","Parent1Occupation","Parent1LOTE","Parent2SchoolEducation","Parent2NonSchoolEducation","Parent2Occupation","Parent2LOTE"]
+    "required": ["LocalId","FamilyName","GivenName","BirthDate","Sex","CountryOfBirth","FFPOS","IndigenousStatus","StudentLOTE","YearLevel","TestLevel","ASLSchoolId","Parent1SchoolEducation","Parent1NonSchoolEducation","Parent1Occupation","Parent1LOTE"]
 }
 
 
