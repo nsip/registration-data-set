@@ -432,7 +432,7 @@
             "id": "http://naplan.edu.au/StateTerritory",
             "type": "string",
             "title": "StateTerritory schema.",
-            "enum":["VIC","TAS","NSW","NT","QLD","WA","ACT","SA","XXX"],
+            "enum":["VIC","TAS","NSW","NT","QLD","WA","ACT","SA","XXX","Other"],
             "description": "Description",
             "name": "StateTerritory"
         },
