@@ -44,7 +44,7 @@
             "id": "http://naplan.edu.au/ClassCode",
             "type": "string",
             "title": "ClassCode schema.",
-            "maxLength": 40,
+            "maxLength": 255,
             "description": "Description",
             "name": "ClassCode"
         },
