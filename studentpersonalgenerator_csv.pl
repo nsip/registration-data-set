@@ -22,7 +22,7 @@ my $schoolslist = $ARGV[4];
 my %include_schools = ();
 
 if($schoolslist){
-	open F, "<$ARGV[3]";
+	open F, "<$ARGV[4]";
 	while(<F>){
 		chomp;
 		$include_schools{$_}++;
@@ -81,8 +81,8 @@ sub yearlevel($$){
 }
 
 
-if($ARGV[3]){
-	open F, "<$ARGV[3]";
+if($ARGV[4]){
+	open F, "<$ARGV[4]";
 	while(<F>){
 	chomp;
 	my @a = split m/\t/;
@@ -95,7 +95,7 @@ if($ARGV[3]){
 if($xml) {
 printf qq{<StudentPersonals xmlns="http://www.sifassociation.org/au/datamodel/3.4">};
 } else {
-printf qq{LocalId,SectorId,DiocesanId,OtherId,TAAId,StateProvinceId,NationalId,PlatformId,PreviousLocalId,PreviousSectorId,PreviousDiocesanId,PreviousOtherId,PreviousTAAId,PreviousStateProvinceId,PreviousNationalId,PreviousPlatformId,FamilyName,GivenName,PreferredName,MiddleName,BirthDate,Sex,CountryOfBirth,EducationSupport,FFPOS,VisaCode,IndigenousStatus,LBOTE,StudentLOTE,YearLevel,TestLevel,FTE,ClassCode,ASLSchoolId,SchoolLocalId,LocalCampusId,MainSchoolFlag,OtherSchoolId,ReportingSchoolId,HomeSchooledStudent,Sensitive,OfflineDelivery,Parent1SchoolEducation,Parent1NonSchoolEducation,Parent1Occupation,Parent1LOTE,Parent2SchoolEducation,Parent2NonSchoolEducation,Parent2Occupation,Parent2LOTE,AddressLine1,AddressLine2,Locality,Postcode,StateTerritory\n};
+printf qq{LocalId,SectorId,DiocesanId,OtherId,TAAId,JurisdictionId,NationalId,PlatformId,PreviousLocalId,PreviousSectorId,PreviousDiocesanId,PreviousOtherId,PreviousTAAId,PreviousJurisdictionId,PreviousNationalId,PreviousPlatformId,FamilyName,GivenName,PreferredName,MiddleName,BirthDate,Sex,CountryOfBirth,EducationSupport,FFPOS,VisaCode,IndigenousStatus,LBOTE,StudentLOTE,YearLevel,TestLevel,FTE,ClassGroup,ASLSchoolId,SchoolLocalId,LocalCampusId,MainSchoolFlag,OtherSchoolId,ReportingSchoolId,HomeSchooledStudent,Sensitive,OfflineDelivery,Parent1SchoolEducation,Parent1NonSchoolEducation,Parent1Occupation,Parent1LOTE,Parent2SchoolEducation,Parent2NonSchoolEducation,Parent2Occupation,Parent2LOTE,AddressLine1,AddressLine2,Locality,Postcode,StateTerritory\n};
 }
 my ($i, $j);
 
@@ -104,7 +104,7 @@ my  ($acaraId, $localSchoolId);
 
 for ($j=0;$j<$schoolcount;$j++){
 
-if($ARGV[3]){
+if($ARGV[4]){
 	$acaraId = $schools[$j];
 	$localSchoolId = $schools[$j];
 } else {
