@@ -83,7 +83,7 @@
         },
         "FTE": {
             "id": "http://naplan.edu.au/FTE",
-            "type": "number",
+            "type": "string",
             "title": "FTE schema.",
             "maximum": 1,
             "minimum": 0,
