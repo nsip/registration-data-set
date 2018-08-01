@@ -5,6 +5,7 @@
     "title": "NAPLAN validation schema",
     "description": "Schema for validating student registrations for NAPLAN SRM",
     "name": "/",
+    "additionalProperties": false,
     "properties": {
         "ASLSchoolId": {
             "id": "http://naplan.edu.au/ASLSchoolId",
