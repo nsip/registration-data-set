@@ -32,46 +32,19 @@ if($schoolslist){
 
 #open F, "<a";
 open F, "<asl_schools.csv";
+my $i;
 while(<F>){
-#<A B Paterson College,ARUNDEL,QLD,4214,Primary/Secondary,Non-Government,Open,48096,13495
+        $i++;
         chomp;
 	s/\r//g;
         my @a = split m/,/;
-        push @{$acara_schools{$a[2]}}, $a[7] if ($include_schools{$a[7]} or not %include_schools);
-        push @{$deewr_schools{$a[2]}}, $a[8] if ($include_schools{$a[7]} or not %include_schools);
+        push @{$acara_schools{$a[1]}}, $a[0] if ($include_schools{$a[0]} or not %include_schools);
+        push @{$deewr_schools{$a[1]}}, sprintf("%06d", $i) if ($include_schools{$a[0]} or not %include_schools);
 }
 
-my %location;
-
-open F, "<postcode.csv";
-while(<F>) {
-	my @a = split m/,/;
-	$a[1] =~ s/"//g;
-	$a[0] = sprintf ("%04d", $a[0]);
-	$location{$a[0]} = $a[1] unless exists $location{$a[0]};
-}
 close F;
 
 my @schools;
-
-sub postcode_gen($){
-my ($state) = @_;
-my ($low, $high, $ret);
-if($state eq 'ACT') { $low = 2620; $high = 2899;}
-if($state eq 'NSW') { $low = 1000; $high = 2600;}
-if($state eq 'VIC') { $low = 3000; $high = 3999;}
-if($state eq 'NT') { $low = 800; $high = 999;}
-if($state eq 'QLD') { $low = 4000; $high = 4999;}
-if($state eq 'SA') { $low = 5000; $high = 5999;}
-if($state eq 'WA') { $low = 6000; $high = 6999;}
-if($state eq 'TAS') { $low = 7000; $high = 7999;}
-for(
-        $ret = sprintf ("%04d", ceil ($low + rand($high-$low)) );
-        !$location{$ret} ;
-        $ret = sprintf ("%04d", ceil ($low + rand($high-$low)))
-){ }
-return $ret;
-}
 
 sub yearlevel($$){
         my ($student_ordinal, $student_count) = @_;
@@ -95,9 +68,9 @@ if($ARGV[4]){
 if($xml) {
 printf qq{<StudentPersonals xmlns="http://www.sifassociation.org/au/datamodel/3.4">};
 } else {
-printf qq{LocalId,SectorId,DiocesanId,OtherId,TAAId,JurisdictionId,NationalId,PlatformId,PreviousLocalId,PreviousSectorId,PreviousDiocesanId,PreviousOtherId,PreviousTAAId,PreviousJurisdictionId,PreviousNationalId,PreviousPlatformId,FamilyName,GivenName,PreferredName,MiddleName,BirthDate,Sex,CountryOfBirth,EducationSupport,FFPOS,VisaCode,IndigenousStatus,LBOTE,StudentLOTE,YearLevel,TestLevel,FTE,ClassGroup,ASLSchoolId,SchoolLocalId,LocalCampusId,MainSchoolFlag,OtherSchoolId,ReportingSchoolId,HomeSchooledStudent,Sensitive,OfflineDelivery,Parent1SchoolEducation,Parent1NonSchoolEducation,Parent1Occupation,Parent1LOTE,Parent2SchoolEducation,Parent2NonSchoolEducation,Parent2Occupation,Parent2LOTE,AddressLine1,AddressLine2,Locality,Postcode,StateTerritory\n};
+printf qq{LocalId,SectorId,DiocesanId,OtherId,TAAId,JurisdictionId,NationalId,PlatformId,PreviousLocalId,PreviousSectorId,PreviousDiocesanId,PreviousOtherId,PreviousTAAId,PreviousJurisdictionId,PreviousNationalId,PreviousPlatformId,FamilyName,GivenName,PreferredName,MiddleName,BirthDate,Sex,CountryOfBirth,EducationSupport,FFPOS,VisaCode,IndigenousStatus,LBOTE,StudentLOTE,YearLevel,TestLevel,FTE,ClassGroup,ASLSchoolId,SchoolLocalId,LocalCampusId,MainSchoolFlag,OtherSchoolId,ReportingSchoolId,HomeSchooledStudent,Sensitive,OfflineDelivery,Parent1SchoolEducation,Parent1NonSchoolEducation,Parent1Occupation,Parent1LOTE,Parent2SchoolEducation,Parent2NonSchoolEducation,Parent2Occupation,Parent2LOTE\n};
 }
-my ($i, $j);
+my ($j);
 
 my  ($acaraId, $localSchoolId);
 
@@ -131,9 +104,6 @@ $$person{'address'}{'home'}{'street_2'} = "57 Mt Pleasant Street" if length($$pe
 #my $yearlevel = ceil(rand(4))*2+1;
 my $yearlevel = yearlevel($i, $studentcount);
 
-my $postcode = postcode_gen($state);
-#print $location{$postcode}, $postcode, "\n";
-#
 if($xml){
 printf qq{
 <StudentPersonal RefId="%s">
@@ -176,18 +146,6 @@ printf qq{
       <VisaSubClass>101</VisaSubClass>
       <LBOTE>%s</LBOTE>
     </Demographics>
-    <AddressList>
-      <Address Type="0765" Role="012B">
-        <Street>
-          <Line1>%s</Line1>
-          <Line2>%s</Line2>
-        </Street>
-        <City>%s</City>
-        <StateProvince>%s</StateProvince>
-        <Country>1101</Country>
-        <PostalCode>%s</PostalCode>
-      </Address>
-    </AddressList>
   </PersonInfo>
   <MostRecent>
     <SchoolLocalId>%s</SchoolLocalId>
@@ -242,11 +200,6 @@ $$person{'gender'} eq 'male' ? 1 : 2,
 dateofbirth($yearlevel),
 language(),
 yesno(),
-$$person{'address'}{'home'}{'street_1'},
-$$person{'address'}{'home'}{'street_2'},
-$location{$postcode},
-$state,
-$postcode,
 $localSchoolId,
 $yearlevel,
 rand(),
@@ -324,11 +277,6 @@ floor(rand(4)+1),
 floor(rand(4)+5),
 floor(rand(4)+1),
 language(),
-$$person{'address'}{'home'}{'street_1'},
-$$person{'address'}{'home'}{'street_2'},
-$location{$postcode},
-$postcode,
-$state,
 
 )), "\n";
 }
