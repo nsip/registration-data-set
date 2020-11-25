@@ -296,7 +296,7 @@
             "title": "PreviousJurisdictionId schema.",
             "maxLength": 36,
             "description": "Student Id assigned by jurisdiction, such as a state-level ID, for this student in a previous cycle of NAPLAN.",
-            "name": "JurisdictionId"
+            "name": "PreviousJurisdictionId"
         },                
         "PreviousLocalId": {
             "id": "http://naplan.edu.au/PreviousLocalId",
