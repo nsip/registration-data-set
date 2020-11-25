@@ -70,8 +70,8 @@
             "id": "http://naplan.edu.au/FTE",
             "type": "string",
             "title": "FTE schema.",
-            "maximum": 1,
-            "minimum": 0,
+            "minLength": 1,
+            "maxLength": 4,
             "description": "Description",
             "name": "FTE"
         },
