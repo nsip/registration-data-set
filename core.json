@@ -430,7 +430,7 @@
             "name": "YearLevel"
         }
     },
-    "required": ["LocalId","FamilyName","GivenName","BirthDate","Sex","CountryOfBirth","FFPOS","IndigenousStatus","StudentLOTE","YearLevel","TestLevel","ASLSchoolId","Parent1SchoolEducation","Parent1NonSchoolEducation","Parent1Occupation","Parent1LOTE"]
+    "required": ["LocalId","FamilyName","GivenName","BirthDate","Sex","FFPOS","IndigenousStatus","StudentLOTE","YearLevel","TestLevel","ASLSchoolId","Parent1SchoolEducation","Parent1NonSchoolEducation","Parent1Occupation","Parent1LOTE"]
 }
 
 
