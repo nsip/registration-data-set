@@ -298,13 +298,13 @@
             "description": "Student Id assigned by jurisdiction, such as a state-level ID, for this student in a previous cycle of NAPLAN.",
             "name": "PreviousJurisdictionId"
         },                
-        "PreviousLocalId": {
-            "id": "http://naplan.edu.au/PreviousLocalId",
+        "PreviousLocalSchoolStudentId": {
+            "id": "http://naplan.edu.au/PreviousLocalSchoolStudentId",
             "type": "string",
-            "title": "PreviousLocalId schema.",
+            "title": "PreviousLocalSchoolStudentId schema.",
             "description": "Description",
             "maxLength": 36,
-            "name": "PreviousLocalId"
+            "name": "PreviousLocalSchoolStudentId"
         },
         "PreviousNationalId": {
             "id": "http://naplan.edu.au/PreviousNationalId",
